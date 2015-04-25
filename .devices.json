@@ -1,0 +1,5 @@
+{
+  ios: ['-p','ios','-T', 'simulator', '--device-id','1DF27F5C-3960-4901-A000-DCFCFBDC96BE'],
+  android: ['-p','android', '-T','device'],
+  default: ['-p','ios']
+}
