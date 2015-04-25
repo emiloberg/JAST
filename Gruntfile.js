@@ -1,11 +1,14 @@
-// titanium build targets,
-var ti_args= {
-  ios: ['-p','ios','-T', 'simulator', '--device-id','F2B9C750-6BCC-4BC0-8CE8-A5D1FA30A036'],
-  android: ['-p','android', '-T','device'],
-  default: ['-p','ios'] 
-};
-
 module.exports = function(grunt) {
+
+  //titanium build targets
+  var username = process.env.USER || process.env.USERNAME;
+  var devicesSettingsUser = '.devices.' + username + '.json';
+  var devicesSettings = '.devices.json';
+  if (grunt.file.exists(devicesSettingsUser)) {
+    devicesSettings = devicesSettingsUser;
+  }
+  var ti_args = grunt.file.readJSON(devicesSettings, {encoding: 'utf-8'});
+
   grunt.initConfig({
 
     // Project Specific Definitions

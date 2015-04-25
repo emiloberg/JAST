@@ -35,12 +35,23 @@ If you would like coffee with that see [grunt-titanium-tishadow](https://github.
 
 ## Configuration
 
-The configuration is at the head of the `Gruntfile.js`.
+The configuration is in `.devices.json`. However, you should copy this file to `devices.YOURUSERNAME.json` (get your username by running `whoami` in your terminal). That way you can have a configuration file which is unique to your computer and doesn't creates conflicts when working with version control systems.
 
-You **must** modify the `ti_args` values to suit your environment.
-The `ti info` command can help to get the correct ios simulator device id.
+You **must** modify the `devices.YOURUSERNAME.json` values to suit your environment. The `ti info` command can help to get the correct ios simulator device id.
 
-You can optionally modify `Project Specific Definitions` section.
+Feel free to add multiple platforms as:
+
+```
+{
+  "iphone5": ["-p","ios","-T", "simulator", "--device-id","11146D86-F1A5-468C-9D0E-8231FF0F6B72"],
+  "iphone6": ["-p","ios","-T", "simulator", "--device-id","1DF27F5C-3960-4901-A000-DCFCFBDC96BE"],
+  "ipad2": ["-p","ios","-T", "simulator", "--device-id","0437C66A-24A2-4654-84EF-6A94ED12C908"],
+  "android": ["-p","android", "-T","device"],
+  "default": ["-p","ios"]
+}
+```
+
+You can optionally modify `Project Specific Definitions` section in the `Gruntfile.js`
 
 ## Manually
 
@@ -88,7 +99,7 @@ The **ENTIRE** `app` directory will be cleaned on `grunt clean`.
 
  * `grunt` - compiles the jade, stss and es6 files and copies all the assets from `src` to `app`
  * `grunt dev [-p <platform>]` - auto compile and pushes with TiShadow (`p` flag is optional)
- * `grunt test [-p <plaform>]` - run specs  (`p` flag is optional)
+ * `grunt test [-p <platform>]` - run specs  (`p` flag is optional)
  * `grunt clean` - deletes all generated files
  * `grunt [iphone6|iphone7|ipad6|ipad7|appstore|adhoc|playstore]` - commands inspired by the work
     of @FokkeZB on [TiNy](https://github.com/FokkeZB/tn). Project specific settings are configured at
